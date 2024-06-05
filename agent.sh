@@ -218,7 +218,7 @@ else
     second_part=$(printf "%02d\n" `echo $MASTER_VER  | awk -F'.' '{print $2}'`)
     third_part=$(printf "%02d\n" `echo $MASTER_VER  | awk -F'.' '{print $3}'`)
     version_num="$first_part$second_part$third_part"
-    agent_ver=`(curl -s -m 5 "http://auth.cdnfly.cn/master/upgrades?version_num=$version_num") | grep -Po '"agent_ver":"\d+"' | grep -Po "\d+" || true`
+    agent_ver=`(curl -v -m 5 "https://update-cn.cdnfly.cn/master/upgrades?version_num=$version_num" || curl -v -m 5 "https://update-us.cdnfly.cn/master/upgrades?version_num=$version_num") | grep -Po '"agent_ver":"\d+"' | grep -Po "\d+" || true`
     if [[ "$agent_ver" == "" ]]; then
         echo "无法获取agent版本"
         exit 1
