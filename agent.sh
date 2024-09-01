@@ -195,6 +195,8 @@ while true ; do
 done
 
 
+MASTER_VER="v5.1.13"
+
 if [[ $MASTER_VER == "" ]]; then
     if [[ $AGENT_VER == "" ]]; then
         echo "--master-ver或--agent-ver至少提供一个"
@@ -233,6 +235,7 @@ else
     tar_gz_name="$dir_name-$(get_sys_ver).tar.gz"
 
 fi
+
 
 cd /opt
 
